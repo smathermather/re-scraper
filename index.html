@@ -20,20 +20,24 @@
         var parcelin = encodedUrl.replace(replace, "");
     // Now we are constructing the form submission portion
         var heref = '<a href=\'javascript:SubmitThisForm("' + parcelin + '");\'>Cuyahoga County Fiscal Office</a>'
+
+     <form name="frm" action="" method="post">
+ 
+      <!-- Now to write the href out to html -->    
+        <script>  
+               document.write(heref);  
+        </script> 
+        <input type="hidden" name="par_id" value=''/>
+        
+      </form>
+
+        
     </script>
     
 </head>
 
 <body>
-    <form name="frm" action="" method="post">
- 
-    <!-- Now to write the href out to html -->    
-      <script>  
-             document.write(heref);  
-      </script> 
-      <input type="hidden" name="par_id" value=''/>
-      
-    </form>
+
  
 </body>
 
