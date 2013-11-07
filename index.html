@@ -7,15 +7,18 @@
     <title></title>
 
     <script>
+    // This portion of the function is pulled straight from the fiscal officers' page
         function SubmitThisForm(parc) {
             document.frm.par_id.value = parc;
             document.frm.action = 'http://fiscalofficer.cuyahogacounty.us/AuditorApps/real-property/REPI/general.asp';
             document.frm.submit();
         }
+    // Now we assign everything after the question mark to a js variable
         encodedUrl = location.search;
-    
+    // We'll strip out the question mark
         var replace = /\?/g;
         var parcelin = encodedUrl.replace(replace, "");
+    // Now we are constructing the form submission portion
         var heref = '<a href=\'javascript:SubmitThisForm("' + parcelin + '");\'>Cuyahoga County Fiscal Office</a>'
     </script>
     
@@ -24,10 +27,10 @@
 <body>
     <form name="frm" action="" method="post">
  
+    <!-- Now to write the href out to html -->    
       <script>  
              document.write(heref);  
       </script> 
-
       <input type="hidden" name="par_id" value=''/>
       
     </form>
