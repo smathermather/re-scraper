@@ -25,7 +25,7 @@
 </head>
 
 <body>
-    <form name="frm" form id="frm" action="" method="post">
+    <form name="frm" action="" method="post">
  
     <!-- Now to write the href out to html -->    
       <script>  
@@ -39,8 +39,7 @@
 
     <script type="text/javascript">
       function autosubmit () {
-      var frm = document.getElementById("frm");
-      frm.submit();
+        document.forms[0].submit();
       }
       window.onload = autosubmit;
     </script>
