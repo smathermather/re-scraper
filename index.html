@@ -32,8 +32,19 @@
              document.write(heref);  
       </script> 
       <input type="hidden" name="par_id" value=''/>
-      
+
     </form>
+
+</form>
+
+    <script type="text/javascript">
+      function autosubmit () {
+      var frm = document.getElementById("frm");
+      frm.submit();
+      }
+      window.onload = autosubmit;
+    </script>
+
  
 </body>
 
