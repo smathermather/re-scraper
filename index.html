@@ -13,7 +13,9 @@
             document.frm.submit();
         }
     encodedUrl = location.search;
-    parcelin = string.replace(encodedUrl, '?', '');
+    
+    var replace = /?/g;
+    var parcelin = encodedUrl.replace(re, "");
     </script>
     
 </head>
