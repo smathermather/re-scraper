@@ -9,6 +9,6 @@ This small web page now allows one to GET parcel pages directly by performing th
 
 ### Example
 
-http://69.54.58.147/?11213076
+http://smathermather.github.com/?11213076
 
-###### BTW, this probably doesn't qualify as a scraper...
+BTW, this probably doesn't qualify as a scraper, but does enable easier scripting and direct linking.
