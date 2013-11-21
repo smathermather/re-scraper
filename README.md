@@ -9,7 +9,7 @@ This small web page now allows one to GET parcel pages directly by performing th
 
 ### Example
 
-http://smathermather.github.com/rescraper/?11213076
+http://smathermather.github.com/rescraper/?36314051
 
 BTW, this probably doesn't qualify as a scraper, but does enable easier scripting and direct linking.
 
