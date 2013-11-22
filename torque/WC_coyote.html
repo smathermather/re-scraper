@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <title>CartoDB + Time</title>
+	<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+	<script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+	<!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
+	<![endif]-->
+	<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.css" />
+	<!--[if lte IE 8]>
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v2/themes/css/cartodb.ie.css" />
+	<![endif]-->
+	<script src="http://libs.cartocdn.com/cartodb.js/v2/cartodb.js"></script>
+    <link rel="shortcut icon" href="http://cartodb.com/favicon/favicon_32x32.ico" />
+    <link href="http://code.google.com/apis/maps/documentation/javascript/examples/default.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="lib/cartodb.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="lib/wax.g.js"></script>
+    <script type="text/javascript" src="lib/cartodb-gmapsv3.js"></script>
+    <script type="text/javascript" src="lib/dat.gui.min.js"></script>
+    <script type="text/javascript" src="lib/underscore-min.js"></script>
+    <script type="text/javascript" src="lib/backbone.js"></script>
+    <script type="text/javascript" src="lib/class.js"></script>
+    <script type="text/javascript" src="lib/backbone.cartodb.js"></script>
+    <script type="text/javascript" src="src/canvas_tile_layer.js"></script>
+    <script type="text/javascript" src="src/grid_layer.js"></script>
+    <script type="text/javascript" src="src/torque.js"></script>
+	
+    <script type="text/javascript">
+    var gui;
+    function initialize() {
+        // initialise the google map
+		
+		/*var map = L.map('map_canvas', {
+			center: [41.6, -81.4228833],
+			zoom: 13
+		});
+		
+		L.tileLayer('http://maps1.clemetparks.com/tilestache/tilestache.cgi/basemap/{z}/{x}/{y}.jpg', {
+			attribution: 'Map data &copy; <a href="http://maps.clevelandmetroparks.com">Cleveland Metroparks</a>,
+			maxZoom: 16
+		}).addTo(map);*/
+		
+        var map = new google.maps.Map(document.getElementById('map_canvas'), {
+            center: new google.maps.LatLng(41.38304, -81.69),
+            zoom: 13,
+            mapTypeId:google.maps.MapTypeId.SATELLITE,
+            mapTypeControl:false,
+			maxZoom:15,
+            minZoom:12,
+            scrollwheel: false,
+            panControl: true,
+            zoomControl: true,
+            scaleControl: false,
+            streetViewControl: false,
+            overviewMapControl: false,
+        });
+
+        var map_style = {};
+        map_style.google_maps_customization_style = [
+            {
+                stylers:[
+                    { invert_lightness:true },
+                    { weight:1 },
+                    { saturation:-100 },
+                    { lightness:-40 }
+                ]
+            },
+            {
+                elementType:"labels",
+                stylers:[
+                    { visibility:"simplified" }
+                ]
+            }
+        ];
+
+        var Soft = function () {
+            this.Soft = function () {
+                map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+                map.setOptions({styles:map_style.google_maps_customization_style});
+            }
+        }
+
+
+        map.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+        map.setOptions({styles:map_style.google_maps_customization_style});
+
+        var TorqueOptions = {
+            user: "bgarman4",
+            table: "wc_coyote_time",
+            column: "pointtime",
+            cumulative: false,
+            resolution: 3,
+            steps: 2500,
+            fps: 6,
+            fitbounds: false,
+            clock: true,
+            trails: true,
+            point_type:'circle',
+            cellsize:4
+        }
+
+        var torque = null;
+        Torque(function (env) {
+            Torque.app = new env.app.Instance();
+            torque = new Torque.app.addLayer(map, TorqueOptions);
+            Torque.env = env;
+        });
+
+    }
+    </script>
+</head>
+<body onload="initialize()">
+    <div id="map_canvas"></div>
+    <div class="torque_time"></div>
+    <a class="cartodb_logo" href="http://www.cartodb.com" target="_blank">CartoDB</a>
+</body>
+</html>
