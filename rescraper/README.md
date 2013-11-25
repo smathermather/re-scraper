@@ -12,5 +12,3 @@ This small web page now allows one to GET parcel pages directly by performing th
 http://smathermather.github.com/rescraper/?36314051
 
 BTW, this probably doesn't qualify as a scraper, but does enable easier scripting and direct linking.
-
-(Needless to say, this repo will eventually contain other content as well... .  re-scraper was the first hosting need for github-pages I had, so this goes here first.
